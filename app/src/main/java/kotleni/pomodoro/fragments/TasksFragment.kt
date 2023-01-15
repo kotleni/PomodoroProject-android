@@ -1,5 +1,6 @@
 package kotleni.pomodoro.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotleni.pomodoro.adapters.TasksAdapter
+import kotleni.pomodoro.createViewModel
 import kotleni.pomodoro.databinding.FragmentTasksBinding
+import kotleni.pomodoro.viewmodels.TasksViewModel
 
 class TasksFragment : Fragment() {
     private val binding: FragmentTasksBinding by lazy { FragmentTasksBinding.inflate(layoutInflater) }
+    private val viewModel: TasksViewModel by lazy { createViewModel(requireContext(), TasksViewModel::class.java) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,5 +30,13 @@ class TasksFragment : Fragment() {
             val modalBottomSheet = NewTaskFragment()
             modalBottomSheet.show(parentFragmentManager, "todo")
         }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        viewModel.getTasksList().observe(this) {
+            (binding.recyclerView.adapter as TasksAdapter).addTasks(it)
+        }
+        viewModel.loadTasks()
     }
 }

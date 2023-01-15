@@ -46,10 +46,10 @@
                 android:text="Task"
                 app:layout_constraintLeft_toRightOf="@id/icon"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/about"/>
+                app:layout_constraintBottom_toTopOf="@id/description"/>
 
             <TextView
-                android:id="@+id/about"
+                android:id="@+id/description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
