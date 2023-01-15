@@ -1,6 +1,7 @@
 package kotleni.pomodoro.fragments
 
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,14 +29,12 @@ class TasksFragment : Fragment() {
 
         binding.newTaskFab.setOnClickListener {
             val modalBottomSheet = NewTaskFragment()
+            modalBottomSheet.setOnCreatedListener { viewModel.loadTasks() }
             modalBottomSheet.show(parentFragmentManager, "todo")
         }
-    }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        viewModel.getTasksList().observe(this) {
-            (binding.recyclerView.adapter as TasksAdapter).addTasks(it)
+        viewModel.getTasksList().observe(viewLifecycleOwner) {
+            (binding.recyclerView.adapter as TasksAdapter).updateTasks(it)
         }
         viewModel.loadTasks()
     }

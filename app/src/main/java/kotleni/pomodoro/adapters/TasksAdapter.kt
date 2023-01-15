@@ -19,15 +19,9 @@ class TasksAdapter: RecyclerView.Adapter<TasksAdapter.TaskViewHolder>() {
     }
     private var tasks = arrayListOf<Task>()
 
-    fun addTasks(newTasks: List<Task>) {
-        tasks.addAll(newTasks)
-
-        // TODO: Change to DiffUtils
-        notifyDataSetChanged()
-    }
-
-    fun resetTasks() {
+    fun updateTasks(newTasks: List<Task>) {
         tasks.clear()
+        tasks.addAll(newTasks)
 
         // TODO: Change to DiffUtils
         notifyDataSetChanged()

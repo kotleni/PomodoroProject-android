@@ -14,6 +14,7 @@ import kotleni.pomodoro.viewmodels.NewTaskViewModel
 class NewTaskFragment : BottomSheetDialogFragment() {
     private val binding: FragmentNewTaskBinding by lazy { FragmentNewTaskBinding.inflate(layoutInflater) }
     private val viewModel: NewTaskViewModel by lazy { createViewModel(requireContext(), NewTaskViewModel::class.java) }
+    private var onCreated: (() -> Unit)? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,5 +41,10 @@ class NewTaskFragment : BottomSheetDialogFragment() {
     private fun addTask(name: String, description: String) {
         viewModel.addTask(name, description)
         dismiss()
+        onCreated?.invoke()
+    }
+
+    fun setOnCreatedListener(onCreated: () -> Unit) {
+        this.onCreated = onCreated
     }
 }
