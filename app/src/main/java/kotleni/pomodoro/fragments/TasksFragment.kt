@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotleni.pomodoro.adapters.TasksAdapter
 import kotleni.pomodoro.databinding.FragmentTasksBinding
 
 class TasksFragment : Fragment() {
@@ -17,6 +19,7 @@ class TasksFragment : Fragment() {
     ): View = binding.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = TasksAdapter()
     }
 }
