@@ -21,5 +21,10 @@ class TasksFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = TasksAdapter()
+
+        binding.newTaskFab.setOnClickListener {
+            val modalBottomSheet = NewTaskFragment()
+            modalBottomSheet.show(parentFragmentManager, "todo")
+        }
     }
 }
