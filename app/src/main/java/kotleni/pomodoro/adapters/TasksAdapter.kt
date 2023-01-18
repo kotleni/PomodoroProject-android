@@ -45,15 +45,10 @@ class TasksAdapter: RecyclerView.Adapter<TasksAdapter.TaskViewHolder>(), OnItemT
     }
 
     private var tasks = arrayListOf<Task>()
-    private var onTaskOpenListener: ((Task) -> Unit)? = null
-    private var onTaskRemoveListener: ((Task) -> Unit)? = null
+    private var onItemTaskListener: OnItemTaskListener? = null
 
-    fun setOnTaskOpenListener(onTaskOpenListener: (Task) -> Unit) {
-        this.onTaskOpenListener = onTaskOpenListener
-    }
-
-    fun setOnTaskRemoveListener(onTaskRemoveListener: (Task) -> Unit) {
-        this.onTaskRemoveListener = onTaskRemoveListener
+    fun setOnItemTaskListener(listener: OnItemTaskListener) {
+        onItemTaskListener = listener
     }
 
     fun updateTasks(newTasks: List<Task>) {
@@ -78,10 +73,10 @@ class TasksAdapter: RecyclerView.Adapter<TasksAdapter.TaskViewHolder>(), OnItemT
     }
 
     override fun onItemTaskOpen(task: Task) {
-        onTaskOpenListener?.invoke(task)
+        onItemTaskListener?.onItemTaskOpen(task)
     }
 
     override fun onItemTaskRemove(task: Task) {
-        onTaskRemoveListener?.invoke(task)
+        onItemTaskListener?.onItemTaskRemove(task)
     }
 }
