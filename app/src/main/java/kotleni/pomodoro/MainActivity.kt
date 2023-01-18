@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import kotleni.pomodoro.databinding.ActivityMainBinding
-import kotleni.pomodoro.fragments.SettingsFragment
-import kotleni.pomodoro.fragments.TasksFragment
+import kotleni.pomodoro.settings.SettingsFragment
+import kotleni.pomodoro.tasks.TasksFragment
 
 class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }

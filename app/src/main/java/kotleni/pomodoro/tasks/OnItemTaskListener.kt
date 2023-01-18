@@ -1,6 +1,6 @@
-package kotleni.pomodoro
+package kotleni.pomodoro.tasks
 
-import kotleni.pomodoro.entities.Task
+import kotleni.pomodoro.domain.Task
 
 interface OnItemTaskListener {
     fun onItemTaskOpen(task: Task)

@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import kotleni.pomodoro.entities.Task
+import kotleni.pomodoro.domain.Task
 
 @Dao
 interface TasksDao {

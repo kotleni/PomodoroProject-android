@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.get
-import kotleni.pomodoro.repos.TasksRepository
+import kotleni.pomodoro.domain.repos.TasksRepository
 
 /** Create viewmodel for viewmodelstoreowner
  * @param builder Lambda function that creates viewmodel

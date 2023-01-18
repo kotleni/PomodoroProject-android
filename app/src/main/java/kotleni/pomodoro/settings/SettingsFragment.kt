@@ -1,4 +1,4 @@
-package kotleni.pomodoro.fragments
+package kotleni.pomodoro.settings
 
 import android.os.Bundle
 import android.view.LayoutInflater

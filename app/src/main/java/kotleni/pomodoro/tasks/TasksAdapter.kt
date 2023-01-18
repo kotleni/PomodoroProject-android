@@ -1,13 +1,11 @@
-package kotleni.pomodoro.adapters
+package kotleni.pomodoro.tasks
 
 import android.view.*
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
-import kotleni.pomodoro.OnItemTaskListener
 import kotleni.pomodoro.R
 import kotleni.pomodoro.databinding.ItemTaskBinding
-import kotleni.pomodoro.entities.Task
-import java.nio.file.Files.delete
+import kotleni.pomodoro.domain.Task
 
 class TasksAdapter: RecyclerView.Adapter<TasksAdapter.TaskViewHolder>(), OnItemTaskListener {
     class TaskViewHolder(val binding: ItemTaskBinding, val listener: OnItemTaskListener): RecyclerView.ViewHolder(binding.root), PopupMenu.OnMenuItemClickListener  {

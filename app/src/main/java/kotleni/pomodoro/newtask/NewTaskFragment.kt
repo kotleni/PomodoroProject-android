@@ -1,4 +1,4 @@
-package kotleni.pomodoro.fragments
+package kotleni.pomodoro.newtask
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,9 +10,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import kotleni.pomodoro.createViewModel
 import kotleni.pomodoro.databinding.FragmentNewTaskBinding
-import kotleni.pomodoro.repos.TasksRepository
+import kotleni.pomodoro.domain.repos.TasksRepository
 import kotleni.pomodoro.textAsString
-import kotleni.pomodoro.viewmodels.NewTaskViewModel
 
 class NewTaskFragment : BottomSheetDialogFragment() {
     private val binding: FragmentNewTaskBinding by lazy { FragmentNewTaskBinding.inflate(layoutInflater) }

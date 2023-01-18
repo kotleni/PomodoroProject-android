@@ -1,12 +1,11 @@
-package kotleni.pomodoro.viewmodels
+package kotleni.pomodoro.tasks
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotleni.pomodoro.RepositoriesContainer
-import kotleni.pomodoro.entities.Task
-import kotleni.pomodoro.repos.TasksRepository
+import kotleni.pomodoro.domain.Task
+import kotleni.pomodoro.domain.repos.TasksRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

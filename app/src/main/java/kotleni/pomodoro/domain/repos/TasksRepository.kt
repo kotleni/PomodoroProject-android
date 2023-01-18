@@ -1,9 +1,9 @@
-package kotleni.pomodoro.repos
+package kotleni.pomodoro.domain.repos
 
 import android.content.Context
 import androidx.room.Room
 import kotleni.pomodoro.AppDatabase
-import kotleni.pomodoro.entities.Task
+import kotleni.pomodoro.domain.Task
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

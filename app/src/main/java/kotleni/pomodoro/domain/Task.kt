@@ -1,4 +1,4 @@
-package kotleni.pomodoro.entities
+package kotleni.pomodoro.domain
 
 import android.app.Activity
 import android.view.View

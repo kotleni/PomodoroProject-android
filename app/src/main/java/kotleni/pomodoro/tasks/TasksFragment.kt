@@ -1,18 +1,16 @@
-package kotleni.pomodoro.fragments
+package kotleni.pomodoro.tasks
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotleni.pomodoro.adapters.TasksAdapter
 import kotleni.pomodoro.createViewModel
 import kotleni.pomodoro.databinding.FragmentTasksBinding
-import kotleni.pomodoro.repos.TasksRepository
-import kotleni.pomodoro.viewmodels.TasksViewModel
+import kotleni.pomodoro.newtask.NewTaskFragment
+import kotleni.pomodoro.domain.repos.TasksRepository
 
 class TasksFragment : Fragment() {
     private val binding: FragmentTasksBinding by lazy { FragmentTasksBinding.inflate(layoutInflater) }
