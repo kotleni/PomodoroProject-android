@@ -10,7 +10,7 @@ import kotlinx.coroutines.withContext
 class TasksRepository(context: Context) {
     private val db = Room.databaseBuilder(
         context,
-        AppDatabase::class.java, "tasks"
+        AppDatabase::class.java, AppDatabase.TASKS_DB_NAME
     ).build()
 
     suspend fun getTasks(): List<Task>
