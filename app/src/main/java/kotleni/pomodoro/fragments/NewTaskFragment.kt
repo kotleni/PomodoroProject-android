@@ -8,6 +8,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import kotleni.pomodoro.createViewModel
 import kotleni.pomodoro.databinding.FragmentNewTaskBinding
+import kotleni.pomodoro.textAsString
 import kotleni.pomodoro.viewmodels.NewTaskViewModel
 
 class NewTaskFragment : BottomSheetDialogFragment() {
@@ -23,7 +24,7 @@ class NewTaskFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.addBtn.setOnClickListener {
-            viewModel.addTask(binding.name.text.toString(), binding.description.text.toString())
+            viewModel.addTask(binding.name.textAsString, binding.description.textAsString)
         }
 
         viewModel.getFieldsError().observe(viewLifecycleOwner) {

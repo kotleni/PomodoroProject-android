@@ -1,6 +1,7 @@
 package kotleni.pomodoro
 
 import android.content.Context
+import android.widget.TextView
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
@@ -26,3 +27,7 @@ fun <T: ViewModel> ViewModelStoreOwner.createViewModel(context: Context, clazz: 
 
     return (ViewModelProvider(this, factory).get() as ViewModel) as T
 }
+
+/* Get textview or edittext text as string */
+val TextView.textAsString: String
+    get() = text.toString()
