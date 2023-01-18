@@ -9,11 +9,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotleni.pomodoro.adapters.TasksAdapter
 import kotleni.pomodoro.createViewModel
 import kotleni.pomodoro.databinding.FragmentTasksBinding
+import kotleni.pomodoro.repos.TasksRepository
 import kotleni.pomodoro.viewmodels.TasksViewModel
 
 class TasksFragment : Fragment() {
     private val binding: FragmentTasksBinding by lazy { FragmentTasksBinding.inflate(layoutInflater) }
-    private val viewModel: TasksViewModel by lazy { createViewModel(requireContext(), TasksViewModel::class.java) }
+    private val viewModel: TasksViewModel by lazy { createViewModel { TasksViewModel(
+        TasksRepository(requireContext()) // TODO: Use dependency injection
+    ) } }
 
     override fun onCreateView(
         inflater: LayoutInflater,

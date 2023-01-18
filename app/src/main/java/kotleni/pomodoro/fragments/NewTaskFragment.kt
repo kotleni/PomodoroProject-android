@@ -8,12 +8,15 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import kotleni.pomodoro.createViewModel
 import kotleni.pomodoro.databinding.FragmentNewTaskBinding
+import kotleni.pomodoro.repos.TasksRepository
 import kotleni.pomodoro.textAsString
 import kotleni.pomodoro.viewmodels.NewTaskViewModel
 
 class NewTaskFragment : BottomSheetDialogFragment() {
     private val binding: FragmentNewTaskBinding by lazy { FragmentNewTaskBinding.inflate(layoutInflater) }
-    private val viewModel: NewTaskViewModel by lazy { createViewModel(requireContext(), NewTaskViewModel::class.java) }
+    private val viewModel: NewTaskViewModel by lazy { createViewModel { NewTaskViewModel(
+        TasksRepository(requireContext()) // TODO: Use dependency injection
+    ) } }
     private var onCreated: (() -> Unit)? = null
 
     override fun onCreateView(

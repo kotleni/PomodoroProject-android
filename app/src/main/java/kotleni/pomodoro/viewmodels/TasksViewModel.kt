@@ -6,18 +6,19 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotleni.pomodoro.RepositoriesContainer
 import kotleni.pomodoro.entities.Task
+import kotleni.pomodoro.repos.TasksRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class TasksViewModel(
-    private val repositoriesContainer: RepositoriesContainer
+    private val tasksRepository: TasksRepository
 ): ViewModel() {
     private val _tasksList: MutableLiveData<List<Task>> = MutableLiveData()
     val tasksList: LiveData<List<Task>>
         get() = _tasksList
 
     fun loadTasks() = viewModelScope.launch(Dispatchers.Main) {
-        val tasks = repositoriesContainer.tasksRepository.getTasks()
+        val tasks = tasksRepository.getTasks()
         _tasksList.value = tasks
     }
 }

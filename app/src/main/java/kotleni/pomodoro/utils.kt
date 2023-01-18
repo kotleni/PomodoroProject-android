@@ -9,15 +9,12 @@ import androidx.lifecycle.get
 import kotleni.pomodoro.repos.TasksRepository
 
 /** Create viewmodel for viewmodelstoreowner
- * @param context Activity context
- * @param clazz Viewmodel class
+ * @param builder Lambda function that creates viewmodel
  * @return Initialized viewmodel
  */
-fun <T: ViewModel> ViewModelStoreOwner.createViewModel(context: Context, clazz: Class<T>): T {
-    val constructor = clazz.getConstructor(RepositoriesContainer::class.java)
-    val instance = constructor.newInstance(RepositoriesContainer(
-        TasksRepository(context)
-    ))
+@Suppress("UNCHECKED_CAST")
+inline fun <reified T: ViewModel> ViewModelStoreOwner.createViewModel(builder: () -> T): T {
+    val instance = builder()
 
     val factory = object : ViewModelProvider.Factory {
         override fun <T: ViewModel> create(modelClass: Class<T>): T {
@@ -25,7 +22,7 @@ fun <T: ViewModel> ViewModelStoreOwner.createViewModel(context: Context, clazz: 
         }
     }
 
-    return (ViewModelProvider(this, factory).get() as ViewModel) as T
+    return ViewModelProvider(this, factory).get() as T
 }
 
 /* Get textview or edittext text as string */
