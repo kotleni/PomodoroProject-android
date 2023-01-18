@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotleni.pomodoro.adapters.TasksAdapter
 import kotleni.pomodoro.createViewModel
@@ -30,7 +32,9 @@ class TasksFragment : Fragment() {
 
         binding.newTaskFab.setOnClickListener {
             val modalBottomSheet = NewTaskFragment()
-            modalBottomSheet.setOnCreatedListener { viewModel.loadTasks() }
+            setFragmentResultListener(NewTaskFragment.REQUEST_KEY) { _, _ ->
+                viewModel.loadTasks()
+            }
             modalBottomSheet.show(parentFragmentManager, "todo")
         }
 

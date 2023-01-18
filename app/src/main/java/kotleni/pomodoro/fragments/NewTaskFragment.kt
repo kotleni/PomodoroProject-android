@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import kotleni.pomodoro.createViewModel
@@ -17,7 +19,6 @@ class NewTaskFragment : BottomSheetDialogFragment() {
     private val viewModel: NewTaskViewModel by lazy { createViewModel { NewTaskViewModel(
         TasksRepository(requireContext()) // TODO: Use dependency injection
     ) } }
-    private var onCreated: (() -> Unit)? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,12 +37,12 @@ class NewTaskFragment : BottomSheetDialogFragment() {
         }
 
         viewModel.createdTask.observe(viewLifecycleOwner) {
-            onCreated?.invoke()
+            setFragmentResult(REQUEST_KEY, bundleOf())
             dismiss()
         }
     }
 
-    fun setOnCreatedListener(onCreated: () -> Unit) {
-        this.onCreated = onCreated
+    companion object {
+        const val REQUEST_KEY = "new_task"
     }
 }
