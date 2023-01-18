@@ -1,5 +1,6 @@
 package kotleni.pomodoro.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,25 +12,22 @@ import kotlinx.coroutines.launch
 class NewTaskViewModel(
     private val repositoriesContainer: RepositoriesContainer
 ): ViewModel() {
-    private val fieldsError: MutableLiveData<String> = MutableLiveData()
-    private val createdTask: MutableLiveData<Task> = MutableLiveData()
+    private val _fieldsError: MutableLiveData<String> = MutableLiveData()
+    private val _createdTask: MutableLiveData<Task> = MutableLiveData()
 
-    fun getFieldsError(): MutableLiveData<String> {
-        return fieldsError
-    }
-
-    fun getCreatedTask(): MutableLiveData<Task> {
-        return createdTask
-    }
+    val fieldsError: LiveData<String>
+        get() = _fieldsError
+    val createdTask: LiveData<Task>
+        get() = _createdTask
 
     fun addTask(name: String, description: String) {
         if(name.isEmpty()) {
-            fieldsError.value = "Name is required"
+            _fieldsError.value = "Name is required"
             return
         }
 
         if(description.isEmpty()) {
-            fieldsError.value = "Description is required"
+            _fieldsError.value = "Description is required"
             return
         }
 
@@ -43,6 +41,6 @@ class NewTaskViewModel(
             repositoriesContainer.tasksRepository.addTask(task)
         }
 
-        createdTask.value = task
+        _createdTask.value = task
     }
 }

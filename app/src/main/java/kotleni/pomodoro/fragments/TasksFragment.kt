@@ -33,7 +33,7 @@ class TasksFragment : Fragment() {
             modalBottomSheet.show(parentFragmentManager, "todo")
         }
 
-        viewModel.getTasksList().observe(viewLifecycleOwner) {
+        viewModel.tasksList.observe(viewLifecycleOwner) {
             (binding.recyclerView.adapter as TasksAdapter).updateTasks(it)
         }
         viewModel.loadTasks()

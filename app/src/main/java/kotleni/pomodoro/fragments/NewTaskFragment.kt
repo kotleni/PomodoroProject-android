@@ -27,12 +27,12 @@ class NewTaskFragment : BottomSheetDialogFragment() {
             viewModel.addTask(binding.name.textAsString, binding.description.textAsString)
         }
 
-        viewModel.getFieldsError().observe(viewLifecycleOwner) {
+        viewModel.fieldsError.observe(viewLifecycleOwner) {
             Snackbar.make(binding.root, it, Snackbar.LENGTH_SHORT)
                 .show()
         }
 
-        viewModel.getCreatedTask().observe(viewLifecycleOwner) {
+        viewModel.createdTask.observe(viewLifecycleOwner) {
             onCreated?.invoke()
             dismiss()
         }

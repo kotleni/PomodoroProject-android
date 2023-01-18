@@ -12,16 +12,14 @@ import kotlinx.coroutines.launch
 class TasksViewModel(
     private val repositoriesContainer: RepositoriesContainer
 ): ViewModel() {
-    private val tasksList: MutableLiveData<List<Task>> = MutableLiveData()
-
-    fun getTasksList(): LiveData<List<Task>> {
-        return tasksList
-    }
+    private val _tasksList: MutableLiveData<List<Task>> = MutableLiveData()
+    val tasksList: LiveData<List<Task>>
+        get() = _tasksList
 
     fun loadTasks() = viewModelScope.launch(Dispatchers.IO) {
         repositoriesContainer.tasksRepository.getTasks().let {
             viewModelScope.launch(Dispatchers.Main) {
-                tasksList.value = it
+                _tasksList.value = it
             }
         }
     }
