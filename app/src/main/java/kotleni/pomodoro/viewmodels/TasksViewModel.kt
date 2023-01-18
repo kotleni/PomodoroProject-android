@@ -16,11 +16,8 @@ class TasksViewModel(
     val tasksList: LiveData<List<Task>>
         get() = _tasksList
 
-    fun loadTasks() = viewModelScope.launch(Dispatchers.IO) {
-        repositoriesContainer.tasksRepository.getTasks().let {
-            viewModelScope.launch(Dispatchers.Main) {
-                _tasksList.value = it
-            }
-        }
+    fun loadTasks() = viewModelScope.launch(Dispatchers.Main) {
+        val tasks = repositoriesContainer.tasksRepository.getTasks()
+        _tasksList.value = tasks
     }
 }

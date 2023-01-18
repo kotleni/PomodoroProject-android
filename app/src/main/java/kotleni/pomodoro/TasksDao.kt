@@ -9,11 +9,11 @@ import kotleni.pomodoro.entities.Task
 @Dao
 interface TasksDao {
     @Query("SELECT * FROM task")
-    fun getAll(): List<Task>
+    suspend fun getAll(): List<Task>
 
     @Insert
-    fun insertAll(vararg users: Task)
+    suspend fun insertAll(vararg users: Task)
 
     @Delete
-    fun delete(user: Task)
+    suspend fun delete(user: Task)
 }
