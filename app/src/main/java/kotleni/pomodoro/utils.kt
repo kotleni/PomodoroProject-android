@@ -10,7 +10,7 @@ import kotleni.pomodoro.domain.repos.TasksRepository
 
 /** Create viewmodel for viewmodelstoreowner
  * @param builder Lambda function that creates viewmodel
- * @return Initialized viewmodel
+ * @return Instance of viewmodel
  */
 @Suppress("UNCHECKED_CAST")
 inline fun <reified T: ViewModel> ViewModelStoreOwner.createViewModel(builder: () -> T): T {
