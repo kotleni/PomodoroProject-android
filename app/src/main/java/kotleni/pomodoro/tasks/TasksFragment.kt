@@ -48,7 +48,7 @@ class TasksFragment : Fragment() {
             setFragmentResultListener(NewTaskFragment.REQUEST_KEY) { _, _ ->
                 viewModel.loadTasks()
             }
-            modalBottomSheet.show(parentFragmentManager, "todo")
+            modalBottomSheet.show(parentFragmentManager, null)
         }
 
         viewModel.tasksList.observe(viewLifecycleOwner) {
