@@ -16,12 +16,12 @@ class TasksViewModel(
     val tasksList: LiveData<List<Task>>
         get() = _tasksList
 
-    fun loadTasks() = viewModelScope.launch(Dispatchers.Main) {
+    fun loadTasks() = viewModelScope.launch {
         val tasks = tasksRepository.getTasks()
         _tasksList.value = tasks
     }
 
-    fun removeTask(task: Task) = viewModelScope.launch(Dispatchers.Main) {
+    fun removeTask(task: Task) = viewModelScope.launch {
         tasksRepository.removeTask(task)
         loadTasks() // Update list
     }

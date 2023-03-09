@@ -21,7 +21,7 @@ class NewTaskViewModel(
     val createdTask: LiveData<Task>
         get() = _createdTask
 
-    fun addTask(name: String, description: String) = viewModelScope.launch(Dispatchers.Main) {
+    fun addTask(name: String, description: String) = viewModelScope.launch {
         if(name.isEmpty()) {
             _fieldsError.value = "Name is required"
             return@launch
