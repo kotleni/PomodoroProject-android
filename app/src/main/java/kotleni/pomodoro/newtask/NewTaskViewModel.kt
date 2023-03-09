@@ -8,6 +8,7 @@ import kotleni.pomodoro.domain.Task
 import kotleni.pomodoro.domain.repos.TasksRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class NewTaskViewModel(
     private val tasksRepository: TasksRepository
@@ -20,15 +21,15 @@ class NewTaskViewModel(
     val createdTask: LiveData<Task>
         get() = _createdTask
 
-    fun addTask(name: String, description: String) {
+    fun addTask(name: String, description: String) = viewModelScope.launch(Dispatchers.Main) {
         if(name.isEmpty()) {
             _fieldsError.value = "Name is required"
-            return
+            return@launch
         }
 
         if(description.isEmpty()) {
             _fieldsError.value = "Description is required"
-            return
+            return@launch
         }
 
         val task = Task(
@@ -37,9 +38,7 @@ class NewTaskViewModel(
             icon = 0 // TODO: Implement icons
         )
 
-        viewModelScope.launch(Dispatchers.IO) {
-            tasksRepository.addTask(task)
-        }
+        tasksRepository.addTask(task)
 
         _createdTask.value = task
     }
