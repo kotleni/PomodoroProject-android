@@ -14,7 +14,8 @@ import kotleni.pomodoro.domain.repos.TasksRepository
 import kotleni.pomodoro.textAsString
 
 class NewTaskFragment : BottomSheetDialogFragment() {
-    private val binding: FragmentNewTaskBinding by lazy { FragmentNewTaskBinding.inflate(layoutInflater) }
+    private var _binding: FragmentNewTaskBinding? = null
+    private val binding: FragmentNewTaskBinding get() = _binding!!
     private val viewModel: NewTaskViewModel by lazy { createViewModel { NewTaskViewModel(
         TasksRepository(requireContext()) // TODO: Use dependency injection
     ) } }
@@ -23,7 +24,10 @@ class NewTaskFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = binding.root
+    ): View {
+        _binding = FragmentNewTaskBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.addBtn.setOnClickListener {

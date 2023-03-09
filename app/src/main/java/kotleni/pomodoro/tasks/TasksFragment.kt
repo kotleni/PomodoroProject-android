@@ -14,7 +14,9 @@ import kotleni.pomodoro.newtask.NewTaskFragment
 import kotleni.pomodoro.domain.repos.TasksRepository
 
 class TasksFragment : Fragment() {
-    private val binding: FragmentTasksBinding by lazy { FragmentTasksBinding.inflate(layoutInflater) }
+    private var _binding: FragmentTasksBinding? = null
+    private val binding: FragmentTasksBinding get() = _binding!!
+
     private val viewModel: TasksViewModel by lazy { createViewModel { TasksViewModel(
         TasksRepository(requireContext()) // TODO: Use dependency injection
     ) } }
@@ -23,7 +25,10 @@ class TasksFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = binding.root
+    ): View {
+        _binding = FragmentTasksBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
