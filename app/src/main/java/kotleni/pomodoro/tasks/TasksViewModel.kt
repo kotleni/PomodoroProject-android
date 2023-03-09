@@ -20,4 +20,9 @@ class TasksViewModel(
         val tasks = tasksRepository.getTasks()
         _tasksList.value = tasks
     }
+
+    fun removeTask(task: Task) = viewModelScope.launch(Dispatchers.Main) {
+        tasksRepository.removeTask(task)
+        loadTasks() // Update list
+    }
 }

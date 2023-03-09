@@ -22,4 +22,8 @@ class TasksRepository(context: Context) {
         = withContext(Dispatchers.IO) {
         db.getTasksDao().insertAll(task)
     }
+
+    suspend fun removeTask(task: Task) {
+        db.getTasksDao().delete(task)
+    }
 }

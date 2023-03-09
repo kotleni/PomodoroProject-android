@@ -9,6 +9,7 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotleni.pomodoro.createViewModel
 import kotleni.pomodoro.databinding.FragmentTasksBinding
+import kotleni.pomodoro.domain.Task
 import kotleni.pomodoro.newtask.NewTaskFragment
 import kotleni.pomodoro.domain.repos.TasksRepository
 
@@ -27,6 +28,15 @@ class TasksFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = TasksAdapter()
+        (binding.recyclerView.adapter as TasksAdapter).setOnItemTaskListener(object : OnItemTaskListener {
+            override fun onItemTaskOpen(task: Task) {
+                // TODO
+            }
+
+            override fun onItemTaskRemove(task: Task) {
+                viewModel.removeTask(task)
+            }
+        })
 
         binding.newTaskFab.setOnClickListener {
             val modalBottomSheet = NewTaskFragment()
