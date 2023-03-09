@@ -13,12 +13,13 @@ import kotleni.pomodoro.databinding.FragmentNewTaskBinding
 import kotleni.pomodoro.domain.repos.TasksRepository
 import kotleni.pomodoro.domain.repos.TasksRepositoryImpl
 import kotleni.pomodoro.textAsString
+import kotlinx.coroutines.Dispatchers
 
 class NewTaskFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentNewTaskBinding? = null
     private val binding: FragmentNewTaskBinding get() = _binding!!
     private val viewModel: NewTaskViewModel by lazy { createViewModel { NewTaskViewModel(
-        TasksRepositoryImpl(requireContext()) // TODO: Use dependency injection
+        TasksRepositoryImpl(requireContext(), Dispatchers.IO) // TODO: Use dependency injection
     ) } }
 
     override fun onCreateView(

@@ -13,13 +13,14 @@ import kotleni.pomodoro.domain.Task
 import kotleni.pomodoro.newtask.NewTaskFragment
 import kotleni.pomodoro.domain.repos.TasksRepository
 import kotleni.pomodoro.domain.repos.TasksRepositoryImpl
+import kotlinx.coroutines.Dispatchers
 
 class TasksFragment : Fragment() {
     private var _binding: FragmentTasksBinding? = null
     private val binding: FragmentTasksBinding get() = _binding!!
 
     private val viewModel: TasksViewModel by lazy { createViewModel { TasksViewModel(
-        TasksRepositoryImpl(requireContext()) // TODO: Use dependency injection
+        TasksRepositoryImpl(requireContext(), Dispatchers.IO) // TODO: Use dependency injection
     ) } }
 
     override fun onCreateView(
